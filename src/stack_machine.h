@@ -25,11 +25,11 @@
 //#define MULT_OP       // variant 2
 //#define DIV_OP        // variant 3
 //#define CHOICE_OP     // variant 4
-//#define ASSIGN_OP     // variant 5
-//#define SIG_CHANGE_OP // variant 6
+#define ASSIGN_OP     // variant 5
+#define SIG_CHANGE_OP // variant 6
 //#define INVER_OP      // variant 7
 //#define AND_OP        // variant 8
-//#define OR_OP         // variant 9
+#define OR_OP         // variant 9
 //#define POW_OP        // variant 10
 
 
@@ -121,14 +121,23 @@ class ChoiceOp : public IOperation {
 
 #ifdef ASSIGN_OP
 class AssignOp : public IOperation {
-// TODO Implement virtual methods like in PlusOp class
+    //public:
+//    virtual ~PlusOp() {}
+    public:
+        virtual int operation(char op, int a, int b, int c) override;
+        virtual Arity getArity() const override;
 };
 #endif
 
 #ifdef SIG_CHANGE_OP
 class SigChangeOp : public IOperation {
-// TODO Implement virtual methods like in PlusOp class
-};
+    //public:
+//    virtual ~PlusOp() {}
+    public:
+        virtual int operation(char op, int a, int b, int c) override;
+        virtual Arity getArity() const override;
+
+    };
 #endif
 
 #ifdef INVER_OP
@@ -145,8 +154,13 @@ class AndOp : public IOperation {
 
 #ifdef OR_OP
 class OrOp : public IOperation {
-// TODO Implement virtual methods like in PlusOp class
-};
+    //public:
+//    virtual ~PlusOp() {}
+    public:
+        virtual int operation(char op, int a, int b, int c) override;
+        virtual Arity getArity() const override;
+
+    };
 #endif
 
 #ifdef POW_OP
@@ -195,6 +209,10 @@ public:
      *  an exception is thrown.
      */
     int calculate(const std::string& expr, bool clearStack = true);
+
+private:
+    void doOperation(IOperation* oper, char* token);
+
 public:
 
     // sets/gets

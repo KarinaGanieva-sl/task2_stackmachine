@@ -89,6 +89,7 @@ protected:
     int*    _stack;                         ///< Stack as a dynamic array
     size_t  _ssize;                         ///< Actual stack size
     size_t  _head;                          ///< Stack head
+
 }; // class IntStack
 
 
